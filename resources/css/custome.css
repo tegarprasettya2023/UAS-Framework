@@ -1,0 +1,27 @@
+.icon-nav {
+    position: relative;
+    color: #FFFFFF8C;
+}
+.icon-nav:hover {
+    color: white;
+}
+.notif.circle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(249, 32, 32, 0.86);
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    top: 10px;
+    margin-left: 130px;
+}
+
+/* style footer */
+footer{
+    position: static;
+    bottom: 0;
+    background-color: #025464;
+    color: white;
+}
