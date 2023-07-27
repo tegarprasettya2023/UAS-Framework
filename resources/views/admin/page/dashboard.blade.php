@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="card-footer text-center bg-transparent">
-                <h5>Total Inventory</h5>
+                <h5>Total</h5>
             </div>
         </div>
         <div class="card" style="width: 250px;">
@@ -54,7 +54,7 @@
                 <h5>Total Profit</h5>
             </div>
         </div>
-        
-        
+
+
     </div>
 @endsection
