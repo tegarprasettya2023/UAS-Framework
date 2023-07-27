@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Controller extends BaseController
 {
@@ -40,5 +44,26 @@ class Controller extends BaseController
             'title'     => 'Check Out',
         ]);
     }
+    public function admin()
+    {
+        return view('admin.page.dashboard',[
+            'name'      => "Dashboard",
+            'title'     => 'Admin Dashboard',
+        ]);
+    }
 
+    public function userManagement()
+    {
+        return view('admin.page.user',[
+            'name'      => "User Management",
+            'title'     => 'Admin User Management',
+        ]);
+    }
+    public function report()
+    {
+        return view('admin.page.report',[
+            'name'      => "Report",
+            'title'     => 'Admin Report',
+        ]);
+    }
 }
