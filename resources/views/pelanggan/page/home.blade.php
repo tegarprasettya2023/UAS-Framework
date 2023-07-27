@@ -5,7 +5,7 @@
     <div class="content mt-3 d-flex flex-lg-wrap gap-5 mb-5">
         <div class="card" style="width:220px;">
             <div class="card-header m-auto" style="border-radius:5px;">
-                <img src="{{asset('assets/images/contoh.png')}}" alt="baju 1" style="width: 100%;">
+                <img src="{{asset('assets/Laki/Arizona.png')}}" alt="baju 1" style="width: 100%;">
             </div>
             <div class="card-body">
                 <p class="m-0 text-justify"> Baju Catton warna hitam US </p>
@@ -20,7 +20,7 @@
         </div>
         <div class="card" style="width:220px;">
             <div class="card-header m-auto" style="border-radius:5px;">
-                <img src="{{asset('assets/images/contoh.png')}}" alt="baju 1" style="width: 100%;">
+                <img src="{{asset('assets/Cewe/Friend.png')}}" alt="baju 1" style="width: 100%;">
             </div>
             <div class="card-body">
                 <p class="m-0 text-justify"> Baju Catton warna hitam US </p>
@@ -35,7 +35,7 @@
         </div>
         <div class="card" style="width:220px;">
             <div class="card-header m-auto" style="border-radius:5px;">
-                <img src="{{asset('assets/images/contoh.png')}}" alt="baju 1" style="width: 100%;">
+                <img src="{{asset('assets/Cewe/Anime.png')}}" alt="baju 1" style="width: 100%;">
             </div>
             <div class="card-body">
                 <p class="m-0 text-justify"> Baju Catton warna hitam US </p>
