@@ -40,4 +40,7 @@ Route::group(['middleware' => 'admin'],function(){
 
     Route::POST('/admin/addData', [ProductController::class, 'store'])->name('addData');
     Route::GET('/admin/editModal/{id}', [ProductController::class, 'show'])->name('editModal');
+    Route::PUT('/admin/updateData/{id}', [ProductController::class, 'update'])->name('updateData');
+    Route::DELETE('/admin/deleteData/{id}', [ProductController::class, 'destroy'])->name('deleteData');
+
 });

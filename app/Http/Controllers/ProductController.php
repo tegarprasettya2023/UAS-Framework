@@ -76,7 +76,6 @@ class ProductController extends Controller
             ]
         )->render();
     }
-
     public function update(UpdateproductRequest $request, product $product, $id)
     {
         $data = product::findOrFail($id);
