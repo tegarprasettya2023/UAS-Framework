@@ -28,10 +28,13 @@ class HomeController extends Controller
     {
         // $pageTitle = 'Home';
         // $transaction = Transaction::whereMonth('created_at', '=', date('m'))->where('valid', TRUE)->get();
-        // $customer_count = Customer::count();
-        // $product_count = Product::count();
+        $customer_count = Customer::count();
+        $product_count = Product::count();
 
 
-        return view('home');
+        return view('home',[
+            'customer_count' => $customer_count,
+            'product_count' => $product_count
+        ]);
     }
 }

@@ -63,5 +63,3 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/transaction/create/{transaction_code?}', 'TransactionController@create')->name('transaction.create');
 
 });
-
-

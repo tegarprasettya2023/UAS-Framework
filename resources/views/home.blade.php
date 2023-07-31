@@ -8,11 +8,11 @@
                     <span class="material-icons p-0 m-0" style="font-size:52px; color:lightgray;">
                         inventory
                     </span>
-                    <span class="fs-1 p-0 m-0">100</span>
+                    <span class="fs-1 p-0 m-0">{{$product_count}}</span>
                 </div>
             </div>
             <div class="card-footer text-center bg-transparent">
-                <h5>Total Inventory</h5>
+                <h5>Total Produk</h5>
             </div>
         </div>
         <div class="card" style="width: 250px;">
@@ -34,11 +34,11 @@
                     <span class="material-icons p-0 m-0" style="font-size:52px; color:lightgray;">
                         people
                     </span>
-                    <span class="fs-1 p-0 m-0">100</span>
+                    <span class="fs-1 p-0 m-0">{{$customer_count}}</span>
                 </div>
             </div>
             <div class="card-footer text-center bg-transparent">
-                <h5>Total Karyawan</h5>
+                <h5>Total Pelanggan</h5>
             </div>
         </div>
         <div class="card" style="width: 250px;">
