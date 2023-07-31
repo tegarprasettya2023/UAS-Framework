@@ -19,7 +19,7 @@ class ProductController extends Controller
         $pageTitle = 'Product';
         $products = Product::all();
 
-        confirmDelete();
+        // confirmDelete();
 
         // $products = Product::all();
         return view('Product.index', [
