@@ -1,9 +1,21 @@
 <?php
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProductCategoriesController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\ReportController;
+use Illuminate\Support\Facades\Redirect;
+use App\Exports\ProductExport;
+use App\Http\Controllers\ProductCategories;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\SaleController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,32 +28,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [Controller::class, 'index'])->name('home');
-Route::get('/shop', [Controller::class, 'shop'])->name('shop');
-Route::get('/transaksi', [Controller::class, 'transaksi'])->name('transaksi');
-Route::get('/contact', [Controller::class, 'contact'])->name('contact');
-Route::get('/checkout', [Controller::class, 'checkout'])->name('checkout');
-Route::get('/admin', [Controller::class, 'login'])->name('login');
-Route::POST('/admin/loginProses', [Controller::class, 'loginProses'])->name('loginProses');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::group(['middleware' => 'admin'],function(){
+Auth::routes();
+Route:: redirect('/', '/login');
+Route::get('logout', function ()
+{
+    auth()->logout();
+    Session()->flush();
 
+    return Redirect::to('/');
+})->name('logout');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('Product', ProductController::class);
+Route::resource('ProductCategories', ProductCategoriesController::class);
+Route::resource('Customer', CustomerController::class);
+Route::get('report', [App\Http\Controllers\ReportController::class, 'index'])->name('report');
+Route::get('/penjualan',[App\Http\Controllers\PenjualanController::class, 'index'])->name('penjualan');
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+
+    Route::post('/sale/getCoupon', 'SaleController@getCoupon')->name('sale.getCoupon');
+    Route::resource('sale', 'SaleController');
+    Route::post('/transaction/storeTransaction', 'TransactionController@storeTransaction')->name('transaction.storeTransaction');
+    Route::post('/transaction/report', 'TransactionController@report')->name('transaction.report');
+    Route::get('/struk/{transaction_code?}', 'TransactionController@struk')->name('transaction.struk');
+    Route::resource('transaction', 'TransactionController')->except([
+        'create'
+    ]);
+    Route::get('/transaction/create/{transaction_code?}', 'TransactionController@create')->name('transaction.create');
 
 });
-Route::get('/admin/dashboard', [Controller::class, 'admin'])->name('admin');Route::get('/admin/product', [ProductController::class, 'index'])->name('product');
-Route::get('/admin/logout', [Controller::class, 'logout'])->name('logout');
-Route::get('/admin/report', [Controller::class, 'report'])->name('report');
-Route::get('/admin/addModal', [ProductController::class, 'addModal'])->name('addModal');
-
-Route::GET('/admin/user_management', [UserController::class, 'index'])->name('userManagement');
-Route::GET('/admin/user_management/addModalUser', [UserController::class, 'addModalUser'])->name('addModalUser');
-Route::POST('/admin/user_management/addData', [UserController::class, 'store'])->name('addDataUser');
-Route::get('/admin/user_management/editUser/{id}', [UserController::class, 'show'])->name('showDataUser');
-Route::PUT('/admin/user_management/updateDataUser/{id}', [UserController::class, 'update'])->name('updateDataUSer');
-Route::DELETE('/admin/user_management/deleteUSer/{id}', [UserController::class, 'destroy'])->name('destroyDataUser');
-
-Route::POST('/admin/addData', [ProductController::class, 'store'])->name('addData');
-Route::GET('/admin/editModal/{id}', [ProductController::class, 'show'])->name('editModal');
-Route::PUT('/admin/updateData/{id}', [ProductController::class, 'update'])->name('updateData');
-Route::DELETE('/admin/deleteData/{id}', [ProductController::class, 'destroy'])->name('deleteData');
