@@ -14,50 +14,45 @@
             <table class="table table-responsive table-striped">
                 <thead>
                     <tr>
-                        <td>No</td>
+                        <td>ID</td>
                         <td>Foto</td>
-                        <td>Date In</td>
-                        <td>SKU</td>
-                        <td>Product Name</td>
-                        <td>Category</td>
-                        <td>Price</td>
-                        <td>Stock</td>
+                        <td>KODE PRODUK</td>
+                        <td>NAMA PRODUK</td>
+                        <td>HARGA BELI</td>
+                        <td>HARGA JUAL</td>
+                        <td>STOK</td>
+                        <td>CREATE AT</td>
+                        <td>UPDATE AT</td>
                         <td>#</td>
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($data as $y => $x)
-                        <tr class="align-middle">
-                            <td>{{ ++$y }}</td>
-                            <td>
-                                <img src="{{ asset('storage/product/' . $x->foto) }}" style="width:100px;">
-                            </td>
-                            <td>{{ $x->created_at }}</td>
-                            <td>{{ $x->sku }}</td>
-                            <td>{{ $x->nama_product }}</td>
-                            <td>{{ $x->type . ' ' . $x->kategory }}</td>
-                            <td>{{ $x->harga }}</td>
-                            <td>{{ $x->quantity }}</td>
-                            <td>
-                                <input type="hidden" id="sku" value="{{$x->sku}}">
-                                <button class="btn btn-info editModal" data-id="{{ $x->id }}">
-                                    <i class="fas fa-edit"></i>
+                    @foreach ($product as $product )
+                    <tr>
+                        <td>{{ $product->id }}</td>
+                        <td><img width="60px" height="20px" class="img-thumbnail" src="{{ Storage::url($product->image)}}" alt=""></td>
+                        <td>{{ $product->product_code }}</td>
+                        <td>{{ $product->name }}</td>
+                        <td>{{ $product->selling_price }}</td>
+                        <td>{{ $product->purchase_price}}</td>
+                        <td>{{ $product->stock }}</td>
+                        <td>{{ $product->created_at}}</td>
+                        <td>{{ $product->updated_at}}</td>
+                        <td>
+                            <form action="{{ route('Product.destroy', $product) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <a style="background-color: rgba(53, 142, 224, 1)" class="btn btn-sm btn-dark far fa-edit" href="{{route('Product.edit', $product)}}"></a>
+                                <button type="submit" class="mx-3 btn btn-sm btn-primary btn-delete" data-name="{{ $product->kodeproduk.' '.$product->name }}">
+                                    <i class="bi-trash"></i>
                                 </button>
-                                <button class="btn btn-danger deleteData" data-id="{{ $x->id }}">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    @endforeach --}}
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
             <div class="pagination d-flex flex-row justify-content-between">
-                {{-- <div class="showData">
-                    Data ditampilkan {{$data->count()}} dari {{$data->total()}}
-                </div>
-                <div>
-                    {{ $data->links() }}
-                </div> --}}
             </div>
         </div>
     </div>
