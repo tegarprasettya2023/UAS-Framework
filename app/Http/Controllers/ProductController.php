@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\product;
-use App\Http\Requests\StoreproductRequest;
-use App\Http\Requests\UpdateproductRequest;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\View;
-use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Product;
+use App\Models\ProductCategory;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -16,108 +14,97 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = product::paginate(3);
-        return view('admin.page.product', [
-            'name'      => "Product",
-            'title'     => 'Admin Product',
-            'data'      => $data,
-        ]);
+        return view('Product.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function addModal()
+    public function create()
     {
-        return view('admin/modal/addModal', [
-            'title' => 'Tambah Data Product',
-            'sku'   => 'BRG' . rand(10000, 99999),
+        // $pageTitle = 'Tambahkan Product';
+        $categories = ProductCategory::all();
+
+        return view('Product.create', [
+            // 'pageTitle' => $pageTitle,
+            'categories' => $categories
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreproductRequest $request)
+    public function store(Request $request)
     {
-        $data = new product;
-        $data->sku          = $request->sku;
-        $data->nama_product = $request->nama;
-        $data->type         = $request->type;
-        $data->kategory     = $request->kategori;
-        $data->harga        = $request->harga;
-        $data->quantity     = $request->quantity;
-        $data->discount     = 10 / 100;
-        $data->is_active    = 1;
+        $messages = [
+            'required' => 'Kolom Ini Harus Diisi.',
+            'numeric' => 'Format Angka',
+            'product_code.unique' => 'kode barang sudah ada',
+        ];
 
-        if ($request->hasFile('foto')) {
-            $photo = $request->file('foto');
-            $filename = date('Ymd') . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('storage/product'), $filename);
-            $data->foto = $filename;
+        $validator = Validator::make($request->all(), [
+            'product_code' => 'required|unique:products,product_code',
+            'name' => 'required',
+            'purchase_price' => 'required|numeric',
+            'selling_price' => 'required|numeric',
+            'stock' => 'required|numeric',
+        ], $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+
+
         }
-        $data->save();
-        Alert::toast('Data berhasil disimpan', 'success');
-        return redirect()->route('product');
+
+        $image_path = '';
+
+        if ($request->hasFile('image')) {
+            $image_path = $request->file('image')->store('products', 'public');
+        }
+
+        $product = New Product;
+        $product->product_code = $request->product_code;
+        $product->image = $image_path;
+        $product->name = $request->name;
+        $product->selling_price = $request->selling_price;
+        $product->purchase_price = $request->purchase_price;
+        $product->stock = $request->stock;
+        $product->category_id= $request->category_id;
+        $product->save();
+
+        // Alert::success('Sukses Menambahkan', 'Sukses Menambahkan Produk.');
+        return redirect()->route('Product.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-        $data = product::findOrFail($id);
-
-        return view(
-            'admin.modal.editModal',
-            [
-                'title' => 'Edit data product',
-                'data'  => $data,
-            ]
-        )->render();
+        //
     }
-    public function update(UpdateproductRequest $request, product $product, $id)
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
     {
-        $data = product::findOrFail($id);
+        //
+    }
 
-        if ($request->file('foto')) {
-            $photo = $request->file('foto');
-            $filename = date('Ymd') . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('storage/product'), $filename);
-            $data->foto = $filename;
-        } else {
-            $filename = $request->foto;
-        }
-
-        $field = [
-            'sku'                   => $request->sku,
-            'nama_product'          => $request->nama,
-            'type'                  => $request->type,
-            'kategory'              => $request->kategori,
-            'harga'                 => $request->harga,
-            'quantity'              => $request->quantity,
-            'discount'              => 10 / 100,
-            'is_active'             => 1,
-            'foto'                  => $filename,
-        ];
-
-        $data::where('id',$id)->update($field);
-        Alert::toast('Data berhasil diupdate', 'success');
-        return redirect()->route('product');
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
-        $product = product::findOrFail($id);
-        $product->delete();
-
-        $json = [
-            'success' => "Data berhasil dihapus"
-        ];
-
-        echo json_encode($json);
+        //
     }
 }
