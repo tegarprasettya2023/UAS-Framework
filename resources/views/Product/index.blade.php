@@ -1,6 +1,32 @@
 @extends('layouts.index')
 
 @section('content')
+@push('scripts')
+    <script type="module">
+        $(document).ready(function() {
+
+            $(".datatable").on("click", ".btn-delete", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Are you sure want to delete\n" + name + "?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "bg-primary",
+                    confirmButtonText: "Yes, delete it!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
+@endpush
     <div class="card rounded-full">
         <div class="card-header bg-transparent d-flex justify-content-between">
             <a href="{{route('Product.create')}}" class="btn btn-info" id="addData">
@@ -11,7 +37,7 @@
             <input type="text" wire:model="search" class="form-control w-25" placeholder="Search....">
         </div>
         <div class="card-body">
-            <table class="table table-responsive table-striped">
+            <table class="table table-responsive table-striped datatable">
                 <thead>
                     <tr>
                         <td>ID</td>
