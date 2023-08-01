@@ -21,7 +21,7 @@
                     <span class="material-icons p-0 m-0" style="font-size:52px; color:lightgray;">
                         shopping_cart
                     </span>
-                    <span class="fs-1 p-0 m-0">100</span>
+                    <span class="fs-1 p-0 m-0">{{$transaction_count}}</span>
                 </div>
             </div>
             <div class="card-footer text-center bg-transparent">
@@ -47,7 +47,7 @@
                     <span class="material-icons p-0 m-0" style="font-size:52px; color:lightgray;">
                         account_balance_wallet
                     </span>
-                    <span class="fs-1 p-0 m-0">100</span>
+                    <span class="fs-1 p-0 m-0">{{$profit}}</span>
                 </div>
             </div>
             <div class="card-footer text-center bg-transparent">
