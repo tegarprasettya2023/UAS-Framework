@@ -12,6 +12,14 @@
                     </div>
                 </a>
             </li>
+            <li class="navbar-item rounded ">
+                <a href="{{route('katalog')}}" class="text-white">
+                    <div class="d-flex gap-3">
+                        <span class="material-icons">dashboard</span>
+                        <p class="m-0 p-0">Katalog</p>
+                    </div>
+                </a>
+            </li>
             <li class="navbar-item rounded">
                 <a href="{{route('ProductCategories.index')}}" class="">
                     <div class="d-flex gap-3">
@@ -37,7 +45,7 @@
                 </a>
             </li>
             <li class="navbar-item rounded">
-                <a href="{{route('transaction.create')}}" class="">
+                <a href="{{ route('transaction.create', AppHelper::transaction_code())}}" class="">
                     <div class="d-flex gap-3">
                         <span class="material-icons">people_alt</span>
                         <p class="m-0 p-0">Cashier</p>
@@ -45,7 +53,7 @@
                 </a>
             </li>
             <li class="navbar-item rounded">
-                <a href="" class="">
+                <a href="{{route('transaction.index')}}" class="">
                     <div class="d-flex gap-3">
                         <span class="material-icons">analytics</span>
                         <p class="m-0 p-0">Report</p>
