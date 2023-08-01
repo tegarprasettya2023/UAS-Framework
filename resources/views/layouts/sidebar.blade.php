@@ -61,12 +61,17 @@
                 </a>
             </li>
             <li class="navbar-item">
-                <a href="#" class="">
+                <a href="{{ route('logout') }}" class=""onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+               
                     <div class="d-flex gap-3">
                         <span class="material-icons">logout</span>
                         <p class="m-0 p-0">Logout</p>
                     </div>
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </li>
         </ul>
     </div>
