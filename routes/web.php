@@ -43,6 +43,7 @@ Route::get('logout', function ()
 })->name('logout');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/katalog', [App\Http\Controllers\KatalogController::class, 'index'])->name('katalog');
 Route::resource('Product', ProductController::class);
 Route::resource('ProductCategories', ProductCategoriesController::class);
 Route::resource('Customer', CustomerController::class);
@@ -61,5 +62,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'create'
     ]);
     Route::get('/transaction/create/{transaction_code?}', 'TransactionController@create')->name('transaction.create');
+
+    Route::get('/profile', 'ProfileController@index')->name('profile.index');
+    Route::put('/profile', 'ProfileController@update')->name('profile.update');
 
 });
