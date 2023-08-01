@@ -67,3 +67,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/profile', 'ProfileController@update')->name('profile.update');
 
 });
+Route::get('exportExcel', [TransactionController::class, 'exportExcel'])->name('transaction.exportexcel');
+Route::get('exportPdf', [TransactionController::class, 'exportPdf'])->name('transaction.exportPdf');

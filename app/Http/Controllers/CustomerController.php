@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CustomerController extends Controller
 {
@@ -16,7 +17,7 @@ class CustomerController extends Controller
         $pageTitle = 'customer';
 
         $customers = Customer::all();
-        // confirmDelete();
+        confirmDelete();
         return view('customer.index', [
             // 'pageTitle' => $pageTitle,
             'customer' => $customers
@@ -63,7 +64,7 @@ class CustomerController extends Controller
         $customer->address = $request->address;
         $customer->save();
 
-        // Alert::success('Sukses Menambahkan', 'Sukses Menambahkan Pelanggan.');
+        Alert::success('Sukses Menambahkan', 'Sukses Menambahkan Pelanggan.');
         return redirect()->route('Customer.index');
     }
 
@@ -116,7 +117,7 @@ class CustomerController extends Controller
         $customer->address = $request->address;
         $customer->save();
 
-        // Alert::success('Sukses Mengubah', 'Sukses Mengubah Pelanggan.');
+        Alert::success('Sukses Mengubah', 'Sukses Mengubah Pelanggan.');
         return redirect()->route('Customer.index');
 
 }
@@ -130,7 +131,7 @@ class CustomerController extends Controller
 
         $customer->delete();
 
-        // Alert::success('Sukses Menghapus', 'Sukses Menghapus Pelanggan.');
+        Alert::success('Sukses Menghapus', 'Sukses Menghapus Pelanggan.');
         return redirect()->route('Customer.index');
     }
 

@@ -12,6 +12,8 @@ use App\Models\Customer;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
+use App\exports\TransactionExport;
 
 class TransactionController extends Controller
 {
@@ -234,5 +236,18 @@ class TransactionController extends Controller
             'subTotal' => $subTotal,
             'data' => $data
         ]);
+    }
+    public function exportExcel()
+    {
+    return Excel::download(new TransactionExport, 'transaction.xlsx');
+    }
+
+    public function export1Pdf()
+    {
+        $transaction = Transaction::all();
+
+        $pdf = PDF::loadView('Product.export1_pdf', compact('product'));
+
+        return $pdf->download('product.pdf');
     }
 }
