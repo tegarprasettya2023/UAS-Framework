@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -19,7 +20,7 @@ class ProductController extends Controller
         $pageTitle = 'Product';
         $products = Product::all();
 
-        // confirmDelete();
+        confirmDelete();
 
         // $products = Product::all();
         return view('Product.index', [
@@ -83,7 +84,7 @@ class ProductController extends Controller
         $product->category_id= $request->category_id;
         $product->save();
 
-        // Alert::success('Sukses Menambahkan', 'Sukses Menambahkan Produk.');
+        Alert::success('Sukses Menambahkan', 'Sukses Menambahkan Produk.');
         return redirect()->route('Product.index');
     }
 
@@ -163,7 +164,7 @@ class ProductController extends Controller
         $product->category_id= $request->category_id;
         $product->save();
 
-        // Alert::success('Sukses Mengubah', 'Sukses Mengubah Produk.');
+        Alert::success('Sukses Mengubah', 'Sukses Mengubah Produk.');
         return redirect()->route('Product.index');
     }
 
@@ -179,8 +180,8 @@ class ProductController extends Controller
         }
 
         $product->delete();
+        Alert::success('Sukses Menghapus', 'Sukses Menghapus Produk.');
 
-        // Alert::success('Sukses Menghapus', 'Sukses Menghapus Produk.');
         return redirect()->route('Product.index');
     }
 }

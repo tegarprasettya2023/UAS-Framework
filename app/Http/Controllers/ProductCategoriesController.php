@@ -60,7 +60,7 @@ class ProductCategoriesController extends Controller
         $productcategory->description = $request->description;
         $productcategory->save();
 
-        // Alert::success('Sukses Menambahkan', 'Sukses Menambahkan Kategori Produk.');
+        Alert::success('Sukses Menambahkan', 'Sukses Menambahkan Kategori Produk.');
         return redirect()->route('ProductCategories.index');
     }
 
