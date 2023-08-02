@@ -1,9 +1,9 @@
 @extends('layouts.index')
-
 @section('content')
 @push('scripts')
     <script type="module">
         $(document).ready(function() {
+            $('#productTable').DataTable();
 
             $(".datatable").on("click", ".btn-delete", function (e) {
                 e.preventDefault();
@@ -36,8 +36,9 @@
             </a>
             <input type="text" wire:model="search" class="form-control w-25" placeholder="Search....">
         </div>
-        <div class="card-body">
-            <table class="table table-responsive table-striped datatable">
+        <div class="card-body justify-content-between rounded">
+            <div class="justify-content-between rounded p-4">
+            <table class="table table-bordered table-hover table-striped mb-0 bg-white" id="productTable">
                 <thead>
                     <tr>
                         <td>ID</td>
@@ -68,9 +69,9 @@
                             <form action="{{ route('Product.destroy', $product) }}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <a style="background-color: rgba(53, 142, 224, 1)" class="btn btn-sm btn-dark far fa-edit" href="{{route('Product.edit', $product)}}"></a>
+                                <a style="background-color: rgba(53, 142, 224, 1)" class="btn btn-sm btn-dark" href="{{route('Product.edit', $product)}}"><i class="fas fa-edit"></i></a>
                                 <button type="submit" class="mx-3 btn btn-sm btn-primary btn-delete" data-name="{{ $product->kodeproduk.' '.$product->name }}">
-                                    <i class="bi-trash"></i>
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </form>
                         </td>
@@ -79,6 +80,7 @@
                 </tbody>
             </table>
             <div class="pagination d-flex flex-row justify-content-between">
+            </div>
             </div>
         </div>
     </div>

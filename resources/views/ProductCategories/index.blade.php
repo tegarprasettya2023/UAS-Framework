@@ -57,9 +57,9 @@
                             <form action="{{route('ProductCategories.destroy', $productcategories)}}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <a style="background-color: rgba(53, 142, 224, 1)" class="btn btn-sm btn-dark far fa-edit" href="{{route('ProductCategories.edit', $productcategories)}}"></a>
+                                <a style="background-color: rgba(53, 142, 224, 1)" class="btn btn-sm btn-dark" href="{{route('ProductCategories.edit', $productcategories)}}"><i class="fas fa-edit"></i></a>
                                 <button type="submit" class="mx-3 btn btn-sm btn-primary btn-delete" data-name="{{ $productcategories->name}}">
-                                    <i class="bi-trash"></i>
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </form>
                         </td>

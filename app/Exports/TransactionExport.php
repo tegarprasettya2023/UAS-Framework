@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Product;
+use App\Models\Transaction;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -21,8 +21,13 @@ class TransactionExport implements FromView, WithStyles, ShouldAutoSize
 
     public function view(): View
     {
-        return view('Product.export_excel', [
-            'product' => Product::all()
+        $items = Transaction::with([
+            'customer'
+        ])->where('valid', TRUE)->get();
+
+        return view('Transaction.export_excel', [
+            'items' => $items,
+            'transaction' => Transaction::all()
         ]);
     }
 }

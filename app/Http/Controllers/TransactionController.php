@@ -13,6 +13,7 @@ use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 use App\exports\TransactionExport;
 
 class TransactionController extends Controller
@@ -242,12 +243,15 @@ class TransactionController extends Controller
     return Excel::download(new TransactionExport, 'transaction.xlsx');
     }
 
-    public function export1Pdf()
+    public function exportPdf()
     {
         $transaction = Transaction::all();
+        $items = Transaction::with([
+            'customer'
+        ])->where('valid', TRUE)->get();
 
-        $pdf = PDF::loadView('Product.export1_pdf', compact('product'));
+        $pdf = PDF::loadView('Transaction.export_pdf', compact('transaction','items'));
 
-        return $pdf->download('product.pdf');
+        return $pdf->download('transaction.pdf');
     }
 }

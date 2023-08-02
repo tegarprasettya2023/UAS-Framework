@@ -7,13 +7,13 @@
             <div class="ms-4 mt-4">
                 <ul class="list-inline mx-3 float-end">
                     <li class="list-inline-item">
-                        <a href="" class="btn btn-outline-success">
+                        <a href="{{route('transaction.exportexcel')}}" class="btn btn-outline-success">
                             <i class="bi bi-download me-1"></i> to Excel
                         </a>
                     </li>
                     <li class="list-inline-item">|</li>
                     <li class="list-inline-item">
-                        <a href="" class="btn btn-outline-danger">
+                        <a href={{route('transaction.exportPdf')}} class="btn btn-outline-danger">
                             <i class="bi bi-download me-1"></i> to PDF
                         </a>
                     </li>

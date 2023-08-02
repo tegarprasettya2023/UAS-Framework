@@ -1,5 +1,6 @@
 <aside
     class="sidebar navbar navbar-expand-lg d-flex flex-column gap-4 align-content-lg-center mx-2 my-2 rounded" style="background-color: #025464">
+    <img src="{{ asset('assets/images/logokaosku.png') }}" class="rounded-circle" style="width: 100px;" alt="">
     <h5 class="navbar-brand">Kaosku</h5>
     {{-- <hr class="" style="color: white;font-weight:800"> --}}
     <div class="collapse navbar-collapse flex-grow-0" id="navbarNavDropdown">
@@ -63,7 +64,7 @@
             <li class="navbar-item">
                 <a href="{{ route('logout') }}" class=""onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
-               
+
                     <div class="d-flex gap-3">
                         <span class="material-icons">logout</span>
                         <p class="m-0 p-0">Logout</p>
