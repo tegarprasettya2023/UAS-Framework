@@ -1,7 +1,7 @@
 <nav class="mb-3 d-flex justify-content-lg-between bg-white p-2 rounded">
     <div class="d-flex flex-column">
         <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item active"><a href="#">HI! {{ Auth::user()->name }}</a></li>
+            <li class="breadcrumb-item active"><a href="#">Hallo! {{ Auth::user()->name }} kaosku</a></li>
             {{-- <li class="breadcrumb-item active" aria-current="page">Library</li> --}}
         </ol>
         <span>{{ Auth::user()->name }}</span>

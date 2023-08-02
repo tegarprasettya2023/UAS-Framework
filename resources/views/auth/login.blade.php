@@ -29,10 +29,16 @@
 <body>
 
     <main>
-        <div class="card p-4 m-auto" style="width: 30vw;">
+        <div class="container py-5 h-100">
+        <div class="card bg-dark text-white m-auto" style="width: 30vw;">
             <div class="card-header bg-transparent text-center">
                 {{-- <h5>{{ $name }}</h5> --}}
             </div>
+            <div class="text-center">
+                <img src="{{ asset('assets/images/logokaosku.png') }}" class="rounded-circle" style="width: 200px;" alt="">
+                <h4 class="mt-1 mb-5 pb-1">Kaosku</h4>
+              </div>
+
             <form action="{{ route('login') }}" method="POST">
                 @csrf
                 @if (session('error'))

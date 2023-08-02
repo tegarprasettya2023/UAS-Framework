@@ -91,7 +91,7 @@
                             <th>Rp. {{ number_format($item->total_price, 0,',',',') }}</th>
                             <th class="text-right">
                                 <div class="btn-group" role="group">
-                                    <button class="btn btn-success btn-icon icon-left" data-toggle="modal" data-target="#editItem-{{ $item->id }}">
+                                    <button type="button" class="btn btn-success btn-icon icon-left" data-bs-toggle="modal" data-bs-target="#editItem-{{ $item->id }}">
                                         <i class="fas fa-edit"></i> Edit
                                     </button>
                                     <form action="{{route('sale.destroy', $item->id)}}" method="post">
