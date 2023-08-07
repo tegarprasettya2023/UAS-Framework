@@ -9,6 +9,7 @@ use App\Models\Sale;
 use App\Models\Coupon;
 use App\Models\User;
 use App\Models\Customer;
+use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -57,11 +58,13 @@ class TransactionController extends Controller
         $subTotal = $sales->sum('total_price');
 
         $customers = Customer::all();
+        $products = Product::all();
 
         return view('transaction.create', [
             'title' => $title,
             'transactionCode' => $transactionCode,
             'items' => $items,
+            'product' => $products,
             'customers' => $customers,
             'subTotal' => $subTotal
         ]);

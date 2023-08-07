@@ -16,7 +16,7 @@
             <li class="navbar-item rounded ">
                 <a href="{{route('katalog')}}" class="text-white">
                     <div class="d-flex gap-3">
-                        <span class="material-icons">dashboard</span>
+                        <span class="material-icons">photo_album</span>
                         <p class="m-0 p-0">Katalog</p>
                     </div>
                 </a>
@@ -24,7 +24,7 @@
             <li class="navbar-item rounded">
                 <a href="{{route('ProductCategories.index')}}" class="">
                     <div class="d-flex gap-3">
-                        <span class="material-icons">inventory</span>
+                        <span class="material-icons">category</span>
                         <p class="m-0 p-0">Product Category</p>
                     </div>
                 </a>
@@ -48,7 +48,7 @@
             <li class="navbar-item rounded">
                 <a href="{{ route('transaction.create', AppHelper::transaction_code())}}" class="">
                     <div class="d-flex gap-3">
-                        <span class="material-icons">people_alt</span>
+                        <span class="material-icons">point_of_sale</span>
                         <p class="m-0 p-0">Cashier</p>
                     </div>
                 </a>

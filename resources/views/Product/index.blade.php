@@ -4,7 +4,6 @@
     <script type="module">
         $(document).ready(function() {
             $('#productTable').DataTable();
-
             $(".datatable").on("click", ".btn-delete", function (e) {
                 e.preventDefault();
 
@@ -34,11 +33,10 @@
                     <span>Tambah Product</span>
                 </i>
             </a>
-            <input type="text" wire:model="search" class="form-control w-25" placeholder="Search....">
         </div>
         <div class="card-body justify-content-between rounded">
             <div class="justify-content-between rounded p-4">
-            <table class="table table-bordered table-hover table-striped mb-0 bg-white" id="productTable">
+            <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="productTable">
                 <thead>
                     <tr>
                         <td>ID</td>
@@ -49,8 +47,7 @@
                         <td>HARGA JUAL</td>
                         <td>STOK</td>
                         <td>CREATE AT</td>
-                        <td>UPDATE AT</td>
-                        <td>#</td>
+                        <td>AKSI</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,7 +61,6 @@
                         <td>{{ $product->purchase_price}}</td>
                         <td>{{ $product->stock }}</td>
                         <td>{{ $product->created_at}}</td>
-                        <td>{{ $product->updated_at}}</td>
                         <td>
                             <form action="{{ route('Product.destroy', $product) }}" method="POST">
                                 @csrf
