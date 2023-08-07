@@ -4,7 +4,7 @@
 @push('scripts')
     <script type="module">
         $(document).ready(function() {
-
+            $('#CategoryTable').DataTable();
             $(".datatable").on("click", ".btn-delete", function (e) {
                 e.preventDefault();
 
@@ -34,10 +34,9 @@
                     <span>Tambah Kategori Produk</span>
                 </i>
             </a>
-            <input type="text" wire:model="search" class="form-control w-25" placeholder="Search....">
         </div>
         <div class="card-body">
-            <table class="table table-responsive table-striped datatable">
+            <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="CategoryTable">
                 <thead>
                     <tr>
                         <td>ID</td>
@@ -52,7 +51,6 @@
                         <td>{{ $productcategories->id }}</td>
                         <td>{{ $productcategories->name }}</td>
                         <td>{{ $productcategories->description }}</td>
-                        <td>{{$productcategories->created_at}}</td>
                         <td>
                             <form action="{{route('ProductCategories.destroy', $productcategories)}}" method="POST">
                                 @csrf

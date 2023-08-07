@@ -4,7 +4,7 @@
 @push('scripts')
     <script type="module">
         $(document).ready(function() {
-
+            $('#CustomerTable').DataTable();
             $(".datatable").on("click", ".btn-delete", function (e) {
                 e.preventDefault();
 
@@ -26,6 +26,7 @@
             });
         });
     </script>
+@endpush
     <div class="card rounded-full">
         <div class="card-header bg-transparent d-flex justify-content-between">
             <a href="{{route('Customer.create')}}" class="btn btn-info" id="addData">
@@ -33,10 +34,9 @@
                     <span>Tambah Pelanggan</span>
                 </i>
             </a>
-            <input type="text" wire:model="search" class="form-control w-25" placeholder="Search....">
         </div>
         <div class="card-body">
-            <table class="table table-responsive table-striped datatable">
+            <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="CustomerTable">
                 <thead>
                     <tr>
                         <td>ID</td>

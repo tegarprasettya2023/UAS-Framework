@@ -1,6 +1,13 @@
 @extends('layouts.index')
 
 @section('content')
+@push('scripts')
+    <script type="module">
+        $(document).ready(function() {
+            $('#TransactionTable').DataTable();
+        });
+    </script>
+@endpush
     <div class="card rounded p-2">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h4 class="ms-4 mt-4">Manajemen Produk</h4>
@@ -23,7 +30,7 @@
     </div>
     <div class="card rounded p-4 mt-3">
         <div class="card-body">
-            <table class="table table-responsive table-striped">
+            <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="TransactionTable">
                 <thead>
                     <tr>
                         <th class="text-center" scope="col">No</th>
